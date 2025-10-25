@@ -3,7 +3,7 @@
 A comprehensive DevOps project demonstrating the deployment of a Zomato Clone application using modern DevOps tools, security practices, and CI/CD pipelines.
 
 ### Project Architecture
-<img src="src/assets/images/Zomato-architecture.drawio.png" align="center"></img>
+<img src="src/assets/images/Zomato-architecture.jpg" align="center"></img>
 
 <img src="src/assets/images/Zomato-ui.png" align="center"></img>
 
