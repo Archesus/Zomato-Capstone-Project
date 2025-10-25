@@ -2,6 +2,13 @@
 
 A comprehensive DevOps project demonstrating the deployment of a Zomato Clone application using modern DevOps tools, security practices, and CI/CD pipelines.
 
+### Project Architecture
+<img src="src/assets/images/Zomato-architecture.drawio.png" align="center"></img>
+
+<img src="src/assets/images/Zomato-ui.png" align="center"></img>
+
+---
+
 ## 📋 Project Overview
 
 This capstone project showcases the end-to-end deployment of a food delivery application clone using industry-standard DevOps practices. The project is divided into two main stages, progressively increasing in complexity and incorporating various DevOps tools for building, scanning, monitoring, and deploying applications.
@@ -104,6 +111,12 @@ Before you begin, ensure you have the following installed:
    ```
    http://localhost:3000
    ```
+### Push the image to Docker Hub
+You can push your image to docker hub so that it can be pulled and used later.
+
+<img src="src/assets/images/Docker-hub-images.png" align="center"></img>
+
+---
 
 ### Stage 2: Kubernetes Deployment
 
