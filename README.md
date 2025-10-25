@@ -1,68 +1,267 @@
-# 🚀 **DevOps Project: ZOMATO Clone App Deployment**
+# Zomato Clone - DevOps Capstone Project
 
-In this **DevOps project**, I demonstrate how to **deploy a ZOMATO Clone App** using a variety of modern DevOps tools and services.
+A comprehensive DevOps project demonstrating the deployment of a Zomato Clone application using modern DevOps tools, security practices, and CI/CD pipelines.
 
-## 🛠️ Tools & Services Used:
+## 📋 Project Overview
 
-1. **GitHub** ![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)
-2. **Jenkins** ![Jenkins](https://img.shields.io/badge/Jenkins-D24939?style=flat-square&logo=jenkins&logoColor=white)
-3. **SonarQube** ![SonarQube](https://img.shields.io/badge/SonarQube-4E9BCD?style=flat-square&logo=sonarqube&logoColor=white)
-4. **Docker** ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
-5. **Kubernetes** ![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=flat-square&logo=kubernetes&logoColor=white)
-6. **Prometheus** ![Prometheus](https://img.shields.io/badge/Prometheus-E6522C?style=flat-square&logo=prometheus&logoColor=white)
-7. **Grafana** ![Grafana](https://img.shields.io/badge/Grafana-F46800?style=flat-square&logo=grafana&logoColor=white)
-8. **ArgoCD** ![ArgoCD](https://img.shields.io/badge/ArgoCD-EF7B4D?style=flat-square&logo=argo&logoColor=white)
-9. **OWASP** ![OWASP](https://img.shields.io/badge/OWASP-000000?style=flat-square&logo=owasp&logoColor=white)
-10. **Trivy** ![Trivy](https://img.shields.io/badge/Trivy-00979D?style=flat-square&logo=trivy&logoColor=white)
+This capstone project showcases the end-to-end deployment of a food delivery application clone using industry-standard DevOps practices. The project is divided into two main stages, progressively increasing in complexity and incorporating various DevOps tools for building, scanning, monitoring, and deploying applications.
+
+## 🎯 Project Objectives
+
+- Deploy a containerized Zomato Clone application
+- Implement security scanning and vulnerability detection
+- Build a robust CI/CD pipeline
+- Deploy to Kubernetes with monitoring capabilities
+- Demonstrate proficiency with modern DevOps toolchain
+
+## 🚀 Project Stages
+
+### Stage 1: Docker Container Deployment
+In this stage, the application is containerized and deployed using Docker, establishing the foundation for scalable deployment.
+
+**Key Activities:**
+- Application containerization with Docker
+- Image building and optimization
+- Container deployment and management
+- Security scanning of container images
+
+### Stage 2: Kubernetes Deployment with Monitoring
+This stage focuses on orchestrating the application in a Kubernetes cluster with comprehensive monitoring solutions.
+
+**Key Activities:**
+- Kubernetes cluster setup and configuration
+- Application deployment using K8s manifests/Helm charts
+- Implementation of monitoring and observability tools
+- Service mesh configuration (if applicable)
+- Health checks and auto-scaling
+
+## 🛠️ Technologies & Tools
+
+### Core Technologies
+- **Containerization**: Docker
+- **Orchestration**: Kubernetes
+- **Version Control**: Git, GitHub
+
+### DevOps Tools
+- **CI/CD**: Jenkins / GitHub Actions / GitLab CI
+- **Security Scanning**: Trivy / SonarQube
+- **Monitoring**: Prometheus, Grafana
+- **Container Registry**: Docker Hub / Amazon ECR
+- **Infrastructure as Code**: Terraform / Ansible (if applicable)
+
+## 📁 Project Structure
+
+```
+Zomato-Capstone-Project/
+├── app/                    # Application source code
+├── docker/                 # Docker configurations
+│   ├── Dockerfile
+│   └── docker-compose.yml
+├── kubernetes/             # K8s manifests
+│   ├── deployment.yaml
+│   ├── service.yaml
+│   └── ingress.yaml
+├── monitoring/             # Monitoring configurations
+│   ├── prometheus/
+│   └── grafana/
+├── scripts/                # Automation scripts
+├── .github/workflows/      # CI/CD pipeline definitions
+└── README.md
+```
+
+## 🔧 Prerequisites
+
+Before you begin, ensure you have the following installed:
+
+- Docker (v20.0 or higher)
+- Kubernetes cluster (minikube, kind, or cloud provider)
+- kubectl CLI tool
+- Git
+- CI/CD tool of choice (Jenkins/GitHub Actions)
+- Helm (v3.x)
+
+## 📦 Installation & Setup
+
+### Stage 1: Docker Deployment
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Archesus/Zomato-Capstone-Project.git
+   cd Zomato-Capstone-Project
+   ```
+
+2. **Build the Docker image**
+   ```bash
+   docker build -t zomato-clone:latest .
+   ```
+
+3. **Run the container**
+   ```bash
+   docker run -d -p 3000:3000 zomato-clone:latest
+   ```
+
+4. **Access the application**
+   ```
+   http://localhost:3000
+   ```
+
+### Stage 2: Kubernetes Deployment
+
+1. **Set up Kubernetes cluster**
+   ```bash
+   # For local development with minikube
+   minikube start --driver=docker
+   ```
+
+2. **Deploy to Kubernetes**
+   ```bash
+   kubectl apply -f kubernetes/
+   ```
+
+3. **Verify deployment**
+   ```bash
+   kubectl get pods
+   kubectl get services
+   ```
+
+4. **Access the application**
+   ```bash
+   minikube service zomato-clone-service
+   ```
+
+## 🔒 Security Scanning
+
+The project implements security scanning at multiple levels:
+
+### Container Image Scanning
+```bash
+# Using Trivy
+trivy image zomato-clone:latest
+```
+
+### Code Quality Analysis
+```bash
+# Using SonarQube
+sonar-scanner \
+  -Dsonar.projectKey=zomato-clone \
+  -Dsonar.sources=. \
+  -Dsonar.host.url=http://localhost:9000
+```
+
+## 📊 Monitoring & Observability
+
+### Prometheus Setup
+Deploy Prometheus for metrics collection:
+```bash
+kubectl apply -f monitoring/prometheus/
+```
+
+### Grafana Dashboard
+Access Grafana for visualization:
+```bash
+kubectl port-forward svc/grafana 3000:3000
+```
+
+Default credentials: admin/admin
+
+## 🔄 CI/CD Pipeline
+
+The project includes automated CI/CD pipeline that:
+
+1. **Build Stage**
+   - Checks out code
+   - Runs tests
+   - Builds Docker image
+
+2. **Security Stage**
+   - Scans for vulnerabilities
+   - Performs code quality checks
+   - Checks for secrets in code
+
+3. **Deploy Stage**
+   - Pushes image to registry
+   - Deploys to Kubernetes
+   - Performs smoke tests
+
+## 🧪 Testing
+
+Run tests locally:
+```bash
+# Unit tests
+npm test
+
+# Integration tests
+npm run test:integration
+
+# E2E tests
+npm run test:e2e
+```
+
+## 📈 Performance Optimization
+
+- Container image optimization (multi-stage builds)
+- Kubernetes resource limits and requests
+- Horizontal Pod Autoscaling (HPA)
+- Caching strategies
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+**Issue**: Container fails to start
+```bash
+# Check container logs
+docker logs <container-id>
+```
+
+**Issue**: Pod in CrashLoopBackOff
+```bash
+# Describe pod for details
+kubectl describe pod <pod-name>
+kubectl logs <pod-name>
+```
+
+## 🤝 Contributing
+
+Contributions are welcome! Please follow these steps:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 👤 Author
+
+**KASTRO KIRAN V**
+
+- GitHub: [@Archesus](https://github.com/Archesus)
+- LinkedIn: [Connect on LinkedIn](https://www.linkedin.com/in/anurag-kumar-301243269/)
+
+## 🙏 Acknowledgments
+
+- Thanks to all contributors and the DevOps community
+- Special thanks to mentors and reviewers
+- Inspired by real-world DevOps practices
+
+## 📞 Contact & Feedback
+
+If you found this project helpful, please:
+- ⭐ Star this repository
+- 📢 Share on LinkedIn and tag me
+- 💬 Provide feedback and suggestions
 
 ---
 
-### Project Stages:
+**Note**: This is a learning project for educational purposes. It demonstrates DevOps practices and is not intended for production use without proper security hardening and configuration.
 
-1. **Stage 1** - Deployment of App to Docker Container
-2. **Stage 2** - Deployment of App to K8S Cluster with Monitoring
+## 🔗 Useful Links
 
----
-
-### 📂 GitHub Repo Link:  
-[**ZOMATO Clone DevOps Project**](#)
-
-### 📹 DevOps Project Video Link:  
-[![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=flat-square&logo=youtube&logoColor=white)](https://youtu.be/GyoI6-I68aQ)
-
-### 📺 Docker Playlist Video Link:  
-[![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=flat-square&logo=youtube&logoColor=white)](https://www.youtube.com/playlist?list=PLs-PsDpuAuTeNx3OgGQ1QrpNBo-XE6VBh)
-
----
-
-## 📂 Other DevOps Projects
-
-### 🟠 **SWIGGY App Project**:  
-[![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=flat-square&logo=youtube&logoColor=white)](https://youtu.be/x55z7rk0NAU)
-
-### 🔵 **SonarQube Video Link**:  
-[![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=flat-square&logo=sonarqube&logoColor=white)](https://youtu.be/ScdedztTaAU)
-
-### 🟡 **Nexus Video Link**:  
-[![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=flat-square&logo=nexus&logoColor=white)](https://youtu.be/opJAfDOCZuI)
-
----
-
-## Connect with me on LinkedIn:  
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/kastro-kiran/)
-
-## Join the WhatsApp Group for DevOps technical discussions!
-[![WhatsApp](https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://chat.whatsapp.com/EGw6ZlwUHZc82cA0vXFnwm) 
-
----
-
-### Feedback Request:  
-
-After deploying the app, please share your opinion on LinkedIn along with the Project link and tag me on LinkedIn. Help the video reach wider DevOps enthusiasts.
-
----
-
-## Happy learning!  
-<img src="https://media.licdn.com/dms/image/v2/D5603AQHJB_lF1d9OSw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1718971147172?e=1735776000&v=beta&t=HC_e0eOufPvf8XQ0P7iI9GDm9hBSIh5FwQaGsL_8ivo" alt="Kastro Profile Image" width="100" height="100" style="border-radius:50%;">
-
-KASTRO KIRAN V
+- [Docker Documentation](https://docs.docker.com/)
+- [Kubernetes Documentation](https://kubernetes.io/docs/)
+- [DevOps Best Practices](https://www.devops.com/)
+- [CI/CD Pipeline Guide](https://www.atlassian.com/continuous-delivery/principles)

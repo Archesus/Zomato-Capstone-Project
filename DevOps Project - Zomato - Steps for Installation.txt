@@ -1,10 +1,11 @@
-DevOps Project - Dr. Kastro Kiran
+DevOps Project - Anurag Kumar
+Inspired by Dr. Kastro Kiran
 Deployment of ZOMATO Project
 --------------------------------------------
 Repo URL: https://github.com/KastroVKiran/DevOps-Project-Zomato-Kastro.git
 
 
-1. Launch an Instance (Ubuntu, 24.04, t2.large, 30 GB)
+1. Launch an Instance (Ubuntu, 24.04, t2.large/m7i-flex.large, 30 GB)
 
 2. Connect to the instance
 
@@ -134,7 +135,7 @@ pipeline {
         }
         stage ("Git Checkout") {
             steps {
-                git 'https://github.com/KastroVKiran/Zomato-Project-Kastro.git'
+                git 'https://github.com/KastroVKiran/Zomato-Project-Kastro.git'  # enter your git repo url
             }
         }
         stage("Sonarqube Analysis"){
@@ -177,8 +178,8 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'docker') {
-                        sh "docker tag zomato kastrov/zomato:latest "
-                        sh "docker push kastrov/zomato:latest "
+                        sh "docker tag zomato kastrov/zomato:latest "   # enter your docker username here
+                        sh "docker push kastrov/zomato:latest "         # enter your docker username here
                     }
                 }
             }
@@ -187,16 +188,16 @@ pipeline {
             steps {
                 script{
                    withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){
-                       sh 'docker-scout quickview kastrov/zomato:latest'
-                       sh 'docker-scout cves kastrov/zomato:latest'
-                       sh 'docker-scout recommendations kastrov/zomato:latest'
+                       sh 'docker-scout quickview kastrov/zomato:latest'                         # enter your docker username here
+                       sh 'docker-scout cves kastrov/zomato:latest'                              # enter your docker username here
+                       sh 'docker-scout recommendations kastrov/zomato:latest'                   # enter your docker username here
                    }
                 }
             }
         }
         stage ("Deploy to Container") {
             steps {
-                sh 'docker run -d --name zomato -p 3000:3000 kastrov/zomato:latest'
+                sh 'docker run -d --name zomato -p 3000:3000 kastrov/zomato:latest'              # enter your docker username here
             }
         }
     }
@@ -219,7 +220,7 @@ pipeline {
                 </body>
                 </html>
             """,
-            to: 'kastrokiran@gmail.com',
+            to: '<your-email>@gmail.com',
             mimeType: 'text/html',
             attachmentsPattern: 'trivy.txt'
         }
